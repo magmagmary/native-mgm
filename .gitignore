@@ -110,6 +110,11 @@ yarn-error.log
 # testing
 /coverage
 
+# android & ios
+apps/*/android
+apps/*/ios
+
+
 
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
