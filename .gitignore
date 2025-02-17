@@ -118,3 +118,7 @@ apps/*/ios
 
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+
+# Next.js
+.next
+out

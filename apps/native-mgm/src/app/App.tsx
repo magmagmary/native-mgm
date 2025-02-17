@@ -17,7 +17,7 @@ export const App = () => {
       <Text
         style={[styles.textXL, styles.appTitleText]}
       >
-        Welcome NativeMgm
+        Welcome NativeMgms
       </Text>
       <Button onPress={() => undefined} title='Hello' styles={{ marginTop: 16 }} />
 
