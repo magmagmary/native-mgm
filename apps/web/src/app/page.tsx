@@ -1,10 +1,9 @@
-import { Button } from '@native-magmag/ui';
 
 export default function Index() {
 
   return (
-    <div>
-      <Button onPress={() => undefined} title='Hello' styles={{ marginTop: 16 }} />
+    <div className="bg-gray-950 h-svh w-svw text-white flex items-center justify-center text-3xl">
+      Page2
     </div>
   );
 }
