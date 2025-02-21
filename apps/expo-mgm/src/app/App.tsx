@@ -13,29 +13,15 @@ export const App = () => {
   const scrollViewRef = useRef<null | ScrollView>(null);
 
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView
+    <View  >
+      <Text className='text-red-500'>Hello there,</Text>
+      <Text
+        testID="heading"
       >
-
-        <ScrollView
-          ref={(ref) => {
-            scrollViewRef.current = ref;
-          }}
-          contentInsetAdjustmentBehavior="automatic"
-        >
-          <View  >
-            <Text className='text-red-500'>Hello there,</Text>
-            <Text
-              testID="heading"
-            >
-              Welcome ExpoMgm 👋
-            </Text>
-            <Button title='hi' />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+        Welcome ExpoMgm 👋
+      </Text>
+      <Button title='hi' />
+    </View>
   );
 };
 
