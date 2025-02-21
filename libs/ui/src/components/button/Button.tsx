@@ -11,7 +11,7 @@ export function Button({ title, onPress, styles }: { title: string; onPress?: ()
 const buttonStyles = StyleSheet.create({
   button: {
     padding: 10,
-    backgroundColor: 'blue',
+    backgroundColor: 'red',
     borderRadius: 5,
     alignItems: 'center',
   },

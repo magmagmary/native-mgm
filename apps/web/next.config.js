@@ -12,6 +12,13 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'react-native$': 'react-native-web', // Alias react-native to react-native-web
+    };
+    return config;
+  },
 };
 
 const plugins = [
