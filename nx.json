@@ -97,5 +97,5 @@
       }
     }
   },
-  "packageManager": "pnpm"
+  "packageManager": "npm"
 }
