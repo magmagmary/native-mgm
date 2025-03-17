@@ -12,14 +12,14 @@ const sampleData = [
 
 const List = () => {
 	return (
-		<View>
-			<Text className="text-2xl text-red-700">List</Text>
+		<View className="w-full h-full bg-white">
+			<Text className="text-2xl text-primary mb-5">List</Text>
 			<FlatList
 				// horizontal
 				// showsHorizontalScrollIndicator={false}
 				keyExtractor={(item) => item.id.toString()}
 				data={sampleData}
-				renderItem={({ item }) => <Text className="h-36">{item.name}</Text>}
+				renderItem={({ item }) => <Text>{item.name}</Text>}
 			/>
 		</View>
 	);

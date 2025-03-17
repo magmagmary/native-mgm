@@ -2,6 +2,7 @@
   "expo": {
     "name": "ExpoMgm",
     "slug": "expo-mgm",
+    "entryPoint": "./index.js",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -31,6 +32,8 @@
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
     },
-    "plugins": []
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
