@@ -9,7 +9,7 @@ export default function Page() {
 	return (
 		<View className="bg-white w-full h-full flex items-center justify-center">
 			<Image source={require("../../assets/icon.png")} className="w-10 h-10 " />
-			<Text className="text-primary text-4xl">Hello {name}</Text>
+			<Text className="text-primary text-4xl mb-5">Hello {name}</Text>
 			<Input
 				placeholder="enter your name"
 				value={name}

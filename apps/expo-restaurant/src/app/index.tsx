@@ -1,8 +1,15 @@
-import React from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
+import { Text, View } from "react-native";
+import SearchBar from "../components/home/SearchBar";
 
-export const App = () => {
-	return <Text className="bg-red-400">Heeloo</Text>;
+export const Index = () => {
+	const [search, setSearch] = useState("");
+
+	return (
+		<View className="w-svw h-svh">
+			<SearchBar search={search} setSearch={setSearch} />
+		</View>
+	);
 };
 
-export default App;
+export default Index;
