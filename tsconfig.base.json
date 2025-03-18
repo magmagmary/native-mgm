@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@native-magmag/ui": ["libs/ui/src/index.ts"]
+      "@native-magmag/ui": ["libs/ui/src/index.ts"],
+      "@native-magmag/service": ["libs/service/index.ts"],
     }
   },
   "exclude": ["node_modules", "tmp"]
