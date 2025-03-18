@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-import SearchBar from "../components/home/SearchBar";
+import SearchBar from "../../components/home/SearchBar";
 import { useGetPostsQuery } from "@native-magmag/service";
-import Posts from "../components/home/Posts";
+import Posts from "../../components/home/Posts";
 import { useDebounceValue } from "usehooks-ts";
 
 export const Index = () => {

@@ -1,51 +1,42 @@
-import { Tabs } from "expo-router";
+import { Stack, Tabs } from "expo-router";
 import { Platform, View } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import Entypo from "@expo/vector-icons/Entypo";
+import { StatusBar } from "expo-status-bar";
 
 import React from "react";
 import { primary_color, white } from "@native-magmag/ui";
 import { Provider } from "react-redux";
 import { store } from "@native-magmag/service";
 
-const isWeb = Platform.OS === "web";
-
 export default function RootLayout() {
 	return (
 		<Provider store={store}>
-			<Tabs
-				screenOptions={{
-					headerStyle: { backgroundColor: primary_color },
-					headerTintColor: white,
-					tabBarInactiveTintColor: "darkgray",
-					tabBarActiveTintColor: white,
-					tabBarPosition: isWeb ? "top" : "bottom",
-					tabBarStyle: { backgroundColor: primary_color, cursor: "pointer" },
-					headerShown: !isWeb,
-				}}
-				screenLayout={({ children }) => (
-					<View className="w-full h-full p-10 bg-white">{children}</View>
-				)}
-			>
-				<Tabs.Screen
-					name="index"
+			<Stack screenOptions={{ headerShown: false }}>
+				{/* Wrap Tabs inside a Stack.Screen */}
+				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+				{/* Add the modal screen */}
+				<Stack.Screen
+					name="post/[id]"
 					options={{
-						title: "Home",
-						tabBarIcon: ({ color }) => (
-							<AntDesign name="home" size={24} color={color} />
-						),
+						presentation: "transparentModal", // This makes the screen appear as a modal
+						headerShown: true, // Optional: hide the header for a cleaner modal look
+						headerTitle: "Post Details",
+						headerStyle: {
+							backgroundColor: primary_color,
+						},
+						headerTitleStyle: {
+							color: white,
+						},
+						animation: Platform.select({
+							web: "none",
+							default: "slide_from_bottom",
+						}),
+						contentStyle: {
+							backgroundColor: "transparent",
+						},
 					}}
 				/>
-				<Tabs.Screen
-					name="list"
-					options={{
-						title: "List",
-						tabBarIcon: ({ color }) => (
-							<Entypo name="list" size={24} color={color} />
-						),
-					}}
-				/>
-			</Tabs>
+			</Stack>
+			<StatusBar style="auto" />
 		</Provider>
 	);
 }
