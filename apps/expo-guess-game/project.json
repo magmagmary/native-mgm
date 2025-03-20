@@ -1,0 +1,9 @@
+{
+  "name": "expo-guess-game",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/expo-guess-game/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project expo-guess-game --web",
+  "targets": {}
+}
