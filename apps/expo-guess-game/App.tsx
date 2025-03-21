@@ -4,10 +4,21 @@ import StartGameScreen from './screens/StartGameScreen';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
 import { primary_color, warning_color } from '@native-magmag/ui';
+import { useAppFont } from '@native-magmag/utils';
+import AppLoading from 'expo-app-loading';
 import GameScreen from './screens/GameScreen';
 
 export const App = () => {
   const [enteredNumber, setEnteredNumber] = useState(0);
+
+  // if using expo for the font
+  const [fontsLoaded] = useAppFont();
+
+  if (!fontsLoaded) return <AppLoading />;
+
+  const handleReset = () => {
+    setEnteredNumber(0);
+  };
 
   return (
     <>
@@ -23,9 +34,9 @@ export const App = () => {
         imageClassName="opacity-70 w-full"
         imageStyle={{ opacity: 0.7 }}
       >
-        <SafeAreaView>
+        <SafeAreaView className="font-app flex-1 items-center justify-center">
           {enteredNumber ? (
-            <GameScreen enteredNumber={enteredNumber} />
+            <GameScreen enteredNumber={enteredNumber} onReset={handleReset} />
           ) : (
             <StartGameScreen setEnteredNumber={setEnteredNumber} />
           )}

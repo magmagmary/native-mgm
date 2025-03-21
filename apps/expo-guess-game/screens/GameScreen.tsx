@@ -1,6 +1,6 @@
 import { Button } from '@native-magmag/ui';
 import React, { useState } from 'react';
-import { Modal, Text, View } from 'react-native';
+import { Modal, SafeAreaView, Text, View } from 'react-native';
 
 const Min = 1;
 const Max = 100;
@@ -14,10 +14,17 @@ const generateRandomBetween = (min: number, max: number, exclude: number) => {
   return randomNumber;
 };
 
-const GameScreen = ({ enteredNumber }: { enteredNumber: number }) => {
+const GameScreen = ({
+  enteredNumber,
+  onReset,
+}: {
+  enteredNumber: number;
+  onReset: () => void;
+}) => {
   const [guessedNumber, setGuessedNumber] = useState(
     generateRandomBetween(Min, Max, enteredNumber)
   );
+  const [rounds, setRounds] = useState(0);
 
   const hasFoundNumber = guessedNumber === enteredNumber;
 
@@ -31,6 +38,8 @@ const GameScreen = ({ enteredNumber }: { enteredNumber: number }) => {
       return alert("Don't lie!");
     }
 
+    setRounds((prev) => prev + 1);
+
     if (direction === 'lower') {
       setGuessedNumber(
         generateRandomBetween(Min, guessedNumber, guessedNumber)
@@ -42,12 +51,15 @@ const GameScreen = ({ enteredNumber }: { enteredNumber: number }) => {
     }
   };
 
+  const handleReset = () => {
+    setRounds(0);
+    onReset();
+  };
+
   return (
-    <View className="max-w-[360px] mx-auto">
-      <Text className="text-primary border border-primary p-2 w-fit mx-auto mb-5">
-        Guessed Number
-      </Text>
-      <Text className="text-primary border border-primary p-2 w-fit mx-auto mb-5">
+    <View className="w-full md:w-[360px] mx-auto bg-primary p-4 rounded-md shadow-2xl">
+      <Text className="w-fit mx-auto mb-5">Guessed Number</Text>
+      <Text className=" w-fit mx-auto mb-5 border border-slate-800 p-2">
         {guessedNumber}
       </Text>
       <View className="flex flex-row items-center justify-between gap-2">
@@ -55,23 +67,28 @@ const GameScreen = ({ enteredNumber }: { enteredNumber: number }) => {
           title="+"
           onPress={() => updateGuessedNumber('greater')}
           disabled={hasFoundNumber}
+          className="flex-1 text-2xl"
         />
         <Button
           title="-"
           onPress={() => updateGuessedNumber('lower')}
           disabled={hasFoundNumber}
+          className="flex-1 text-2xl"
         />
       </View>
-      {hasFoundNumber && (
-        <Modal>
-          <View className="bg-primary w-[360px] mx-auto rounded-md shadow-2xl p-4 h-auto">
-            <Text className="text-white text-2xl text-center">
+      <Modal animationType="slide" visible={hasFoundNumber}>
+        <SafeAreaView>
+          <View className="bg-primary p-4 h-full flex flex-col items-center justify-center">
+            <Text className="text-white text-2xl text-center mb-4">
               The number is {guessedNumber}
             </Text>
+            <Text className="text-white text-2xl text-center">
+              You made it after {rounds} rounds!
+            </Text>
+            <Button title="Reset The game" onPress={handleReset} />
           </View>
-        </Modal>
-      )}
-      ;
+        </SafeAreaView>
+      </Modal>
     </View>
   );
 };
