@@ -42,7 +42,7 @@ export const App = () => {
           )}
         </SafeAreaView>
       </ImageBackground>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </>
   );
 };
