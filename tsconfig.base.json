@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@native-magmag/service": ["libs/service/index.ts"],
-      "@native-magmag/ui": ["libs/ui/src/index.ts"]
+      "@native-magmag/ui": ["libs/ui/src/index.ts"],
+      "@native-magmag/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

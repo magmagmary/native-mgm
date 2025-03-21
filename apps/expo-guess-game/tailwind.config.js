@@ -10,6 +10,9 @@ module.exports = {
   ],
 
   theme: {
+    fontFamily:{
+      'app':['app']
+    },
     extend: {},
   },
   plugins: [],
