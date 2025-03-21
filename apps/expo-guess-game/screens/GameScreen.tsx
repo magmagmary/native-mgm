@@ -1,6 +1,6 @@
 import { Button } from '@native-magmag/ui';
 import React, { useState } from 'react';
-import { Modal, SafeAreaView, Text, View } from 'react-native';
+import { ImageBackground, Modal, SafeAreaView, Text, View } from 'react-native';
 
 const Min = 1;
 const Max = 100;
@@ -77,17 +77,25 @@ const GameScreen = ({
         />
       </View>
       <Modal animationType="slide" visible={hasFoundNumber}>
-        <SafeAreaView>
-          <View className="bg-primary p-4 h-full flex flex-col items-center justify-center">
-            <Text className="text-white text-2xl text-center mb-4">
-              The number is {guessedNumber}
-            </Text>
-            <Text className="text-white text-2xl text-center">
-              You made it after {rounds} rounds!
-            </Text>
-            <Button title="Reset The game" onPress={handleReset} />
-          </View>
-        </SafeAreaView>
+        <ImageBackground
+          className="p-5 w-full h-full"
+          source={require('../assets/dice.jpg')}
+          resizeMode="cover"
+          imageClassName="opacity-70 w-full"
+          imageStyle={{ opacity: 0.2 }}
+        >
+          <SafeAreaView>
+            <View className="p-4 h-full flex flex-col gap-4 items-center justify-center">
+              <Text className="text-2xl text-center text-primary">
+                The number is {guessedNumber}
+              </Text>
+              <Text className="text-2xl text-center text-primary">
+                You made it after {rounds} rounds!
+              </Text>
+              <Button title="Reset The game" onPress={handleReset} />
+            </View>
+          </SafeAreaView>
+        </ImageBackground>
       </Modal>
     </View>
   );
