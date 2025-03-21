@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
 import { Button, Input } from '@native-magmag/ui';
 
 const StartGameScreen = ({
@@ -21,24 +21,29 @@ const StartGameScreen = ({
   };
 
   return (
-    <View className="bg-primary w-[360px] mx-auto rounded-md shadow-2xl p-4 h-auto">
-      <Input
-        value={number}
-        onChangeText={setNumber}
-        className="bg-transparent  mx-auto border-b border-b-yellow-300 rounded-none mb-5 px-2"
-        maxLength={2}
-        keyboardType="number-pad"
-      />
-      <View className=" flex flex-row items-center justify-between  ">
-        <Button
-          title="Reset"
-          onPress={() => setNumber('')}
-          variant="secondary"
-          className="flex-1"
+    <ScrollView className="w-[360px] p-4 flex-none">
+      <KeyboardAvoidingView
+        behavior={'position'}
+        className="bg-primary rounded-md shadow-2xl p-4"
+      >
+        <Input
+          value={number}
+          onChangeText={setNumber}
+          className="bg-transparent  mx-auto border-b border-b-yellow-300 rounded-none mb-5 px-2"
+          maxLength={2}
+          keyboardType="number-pad"
         />
-        <Button title="Confirm" onPress={handleConfirm} className="flex-1" />
-      </View>
-    </View>
+        <View className=" flex flex-row items-center justify-between  ">
+          <Button
+            title="Reset"
+            onPress={() => setNumber('')}
+            variant="secondary"
+            className="flex-1"
+          />
+          <Button title="Confirm" onPress={handleConfirm} className="flex-1" />
+        </View>
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
