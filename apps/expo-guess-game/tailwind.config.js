@@ -5,7 +5,7 @@ const { join } = require('path');
 module.exports = {
   presets: [require('../../tailwind.config'), require('nativewind/preset')],
   content: [
-    join(__dirname, './src/**/*.{ts,tsx}'),
+    join(__dirname, './**/*.{ts,tsx}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
 
