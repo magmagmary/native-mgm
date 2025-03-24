@@ -1,12 +1,4 @@
-class Category {
-	constructor(id, title, color) {
-		this.id = id;
-		this.title = title;
-		this.color = color;
-	}
-}
-
-export default Category;
+import { Category, Meal } from "../models/models";
 
 export const CATEGORIES = [
 	new Category("c1", "Italian", "#f5428d"),
