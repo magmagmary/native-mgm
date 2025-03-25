@@ -8,11 +8,16 @@ const AuthRouter = () => {
 
   if (!isLoaded) return null;
 
-  if (isSignedIn) return <Redirect href="/{index}" />;
+  if (isSignedIn) return <Redirect href="/(index)" />;
 
   return (
     <Stack screenOptions={screenOptions}>
-      <Stack.Screen name="index" />
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Sign In',
+        }}
+      />
       <Stack.Screen name="sign-up" />
       <Stack.Screen name="reset-password" />
     </Stack>

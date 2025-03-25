@@ -1,8 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
+import Button from '../../components/button';
+import { BodyScrollView } from '../../components/BodyScrollView';
+import { useClerk } from '@clerk/clerk-expo';
 
 const Home = () => {
-  return <Text>Home</Text>;
+  const { signOut } = useClerk();
+
+  return (
+    <BodyScrollView contentContainerStyle={{ padding: 16 }}>
+      <Button onPress={signOut}>Sign Out</Button>
+    </BodyScrollView>
+  );
 };
 
 export default Home;

@@ -5,7 +5,7 @@ import { screenOptions } from '../../constants/screenOptions';
 const AppRouter = () => {
   return (
     <Stack screenOptions={screenOptions}>
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ title: 'Home' }} />
     </Stack>
   );
 };
