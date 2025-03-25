@@ -1,4 +1,4 @@
-import { useSignIn } from '@clerk/clerk-expo';
+import { isClerkAPIResponseError, useSignIn } from '@clerk/clerk-expo';
 import { Link, useRouter } from 'expo-router';
 import React from 'react';
 import { Text, View } from 'react-native';
@@ -6,6 +6,7 @@ import { ThemedText } from '../../components/themed-text';
 import Button from '../../components/button';
 import TextInput from '../../components/text-input';
 import { BodyScrollView } from '../../components/BodyScrollView';
+import type { ClerkAPIError } from '@clerk/types';
 
 type SignInPayload = {
   email: string;
@@ -17,15 +18,27 @@ const SignIn = () => {
   const router = useRouter();
   const [data, setData] = React.useState({ email: '', password: '' });
   const [isSingingIn, setIsSigningIn] = React.useState(false);
+  const [error, setError] = React.useState<ClerkAPIError[]>([]);
 
   const handleLogin = async () => {
+    if (!isLoaded) return;
     setIsSigningIn(true);
+
+    setError([]);
     try {
-      await signIn(data as SignInPayload);
-      setActive(true);
-      router.push('/{index}');
+      const signInAttempt = await signIn.create({
+        identifier: data.email,
+        password: data.password,
+      });
+
+      if (signInAttempt?.status === 'complete') {
+        await setActive({ session: signInAttempt.createdSessionId });
+        router.replace('/');
+      } else {
+        console.error('Verification failed');
+      }
     } catch (error) {
-      console.error(error);
+      if (isClerkAPIResponseError(error)) setError(error.errors);
     } finally {
       setIsSigningIn(false);
     }
@@ -82,6 +95,12 @@ const SignIn = () => {
           <ThemedText type="link">Reset</ThemedText>
         </Link>
       </View>
+
+      {error.map((error) => (
+        <ThemedText key={error.longMessage} style={{ color: 'red' }}>
+          {error.longMessage}
+        </ThemedText>
+      ))}
     </BodyScrollView>
   );
 };
