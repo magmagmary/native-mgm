@@ -1,4 +1,4 @@
-import { useSignUp } from '@clerk/clerk-expo';
+import { isClerkAPIResponseError, useSignUp } from '@clerk/clerk-expo';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { BodyScrollView } from '../../components/BodyScrollView';
@@ -30,8 +30,8 @@ const Signup = () => {
         strategy: 'email_code',
       });
       setPendingVerification(true);
-    } catch (error) {
-      setErrors(error.errors);
+    } catch (err) {
+      if (isClerkAPIResponseError(err)) setErrors(err.errors);
     } finally {
       setIsLoading(false);
     }
@@ -52,8 +52,8 @@ const Signup = () => {
       } else {
         console.error('Verification failed');
       }
-    } catch (error) {
-      setErrors(error.errors);
+    } catch (err) {
+      if (isClerkAPIResponseError(err)) setErrors(err.errors);
     } finally {
       setIsLoading(false);
     }
