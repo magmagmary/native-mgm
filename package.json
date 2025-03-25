@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@clerk/clerk-expo": "^2.9.3",
     "@clerk/types": "^4.49.1",
     "@expo/metro-config": "~0.19.4",
     "@expo/metro-runtime": "~4.0.0",
@@ -23,6 +24,7 @@
     "expo-linear-gradient": "^14.0.2",
     "expo-linking": "~7.0.5",
     "expo-router": "^4.0.18",
+    "expo-secure-store": "^14.0.1",
     "expo-splash-screen": "~0.29.13",
     "expo-status-bar": "~2.0.1",
     "nativewind": "^4.1.23",
