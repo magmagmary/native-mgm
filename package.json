@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@clerk/types": "^4.49.1",
     "@expo/metro-config": "~0.19.4",
     "@expo/metro-runtime": "~4.0.0",
     "@react-navigation/bottom-tabs": "^7.3.2",
