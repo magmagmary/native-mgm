@@ -1,18 +1,38 @@
 import { BodyScrollView } from 'apps/expo-shopping-list/src/components/BodyScrollView';
 import Button from 'apps/expo-shopping-list/src/components/button';
 import TextInput from 'apps/expo-shopping-list/src/components/text-input';
-import { ThemedText } from 'apps/expo-shopping-list/src/components/themed-text';
-import { appleBlue } from 'apps/expo-shopping-list/src/constants/colors';
+import {
+  appleBlue,
+  backgroundColors,
+  emojies,
+} from 'apps/expo-shopping-list/src/constants/colors';
 import { Link, Stack } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { useListCreation } from '../_context/ListCreationContext';
 
 const create = () => {
   const [listName, setListName] = useState('');
   const [listDescription, setListDescription] = useState('');
+  const { selectedColor, selectedEmoji, setSelectedColor, setSelectedEmoji } =
+    useListCreation();
 
   const handleCreateList = () => {};
   const handleCreateTestLists = () => {};
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+  useEffect(() => {
+    setSelectedEmoji(emojies[Math.floor(Math.random() * emojies.length)]);
+    setSelectedColor(
+      backgroundColors[Math.floor(Math.random() * backgroundColors.length)]
+    );
+
+    return () => {
+      setSelectedColor('');
+      setSelectedEmoji('');
+    };
+  }, [emojies, backgroundColors]);
+
   return (
     <>
       <Stack.Screen
@@ -34,15 +54,15 @@ const create = () => {
           />
           <Link
             href={{ pathname: '/emoji-picker' }}
-            style={[styles.emojiButton, { borderColor: 'blue' }]}
+            style={[styles.emojiButton, { borderColor: selectedColor }]}
           >
             <View style={styles.emojiContainer}>
-              <Text>{'🐒'}</Text>
+              <Text>{selectedEmoji}</Text>
             </View>
           </Link>
           <Link
             href={{ pathname: '/color-picker' }}
-            style={[styles.colorButton, { borderColor: 'blue' }]}
+            style={[styles.colorButton, { borderColor: selectedColor }]}
           >
             <View style={styles.colorContainer}>
               <View
@@ -50,7 +70,7 @@ const create = () => {
                   width: 24,
                   height: 24,
                   borderRadius: 100,
-                  backgroundColor: 'blue',
+                  backgroundColor: selectedColor,
                 }}
               />
             </View>
