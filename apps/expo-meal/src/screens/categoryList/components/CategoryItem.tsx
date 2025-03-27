@@ -1,9 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { Pressable, View, Text } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Pressable, View, Text } from "react-native";
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import type { Category } from 'apps/expo-meal/src/types/types';
+import type { Category } from "apps/expo-meal/src/types/types";
 
 const CategoryItem = ({ category }: { category: Category }) => {
   const navigation = useNavigation();
@@ -16,7 +15,7 @@ const CategoryItem = ({ category }: { category: Category }) => {
       <Pressable
         className="flex-1 flex items-center justify-center"
         onPress={() => {
-          navigation.navigate('Meals', { categoryId: category.id });
+          navigation.navigate("Meals", { categoryId: category.id });
         }}
       >
         <Text className="text-xl"> {category.title}</Text>

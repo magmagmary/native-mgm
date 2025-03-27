@@ -1,13 +1,12 @@
 // apps/my-expo-app/app/_layout.tsx
-import { Slot } from 'expo-router';
-import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { tokenCache } from 'apps/expo-shopping-list/cache';
+import { Slot } from "expo-router";
+import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
+import { tokenCache } from "apps/expo-shopping-list/cache";
 
 const key = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 if (!key) {
-  throw new Error('No frontend api key found');
+  throw new Error("No frontend api key found");
 }
 
 export default function Layout() {
