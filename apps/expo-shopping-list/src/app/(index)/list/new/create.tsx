@@ -6,7 +6,7 @@ import {
   backgroundColors,
   emojies,
 } from "apps/expo-shopping-list/src/constants/colors";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { useListCreation } from "../../../../context/ListCreationContext";
@@ -18,6 +18,7 @@ const create = () => {
   const { selectedColor, selectedEmoji, setSelectedColor, setSelectedEmoji } =
     useListCreation();
   const createList = useAddShoppingListCallback();
+  const router = useRouter();
 
   const handleCreateList = () => {
     if (!listName) return;
@@ -27,6 +28,13 @@ const create = () => {
       description: listDescription,
       emoji: selectedEmoji,
       color: selectedColor,
+    });
+
+    if (!listId) alert("Failed to create list");
+
+    router.replace({
+      pathname: "/list/[listId]",
+      params: { listId },
     });
   };
 

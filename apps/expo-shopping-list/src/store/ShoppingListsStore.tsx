@@ -39,7 +39,7 @@ const useStoreId = () => {
 export const useAddShoppingListCallback = () => {
   const store = useStore(useStoreId());
 
-  if (store === undefined) return () => {};
+  if (store === undefined) return () => null;
 
   return useCallback(
     ({
@@ -72,6 +72,10 @@ export const useAddShoppingListCallback = () => {
     },
     [store],
   );
+};
+
+export const useShoppingListIds = () => {
+  return useRowIds("lists", useStoreId());
 };
 
 export default function ShoppingListsStore() {
