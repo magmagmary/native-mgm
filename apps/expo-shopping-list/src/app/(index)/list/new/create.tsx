@@ -1,42 +1,54 @@
-import { BodyScrollView } from 'apps/expo-shopping-list/src/components/BodyScrollView';
-import Button from 'apps/expo-shopping-list/src/components/button';
-import TextInput from 'apps/expo-shopping-list/src/components/text-input';
+import { BodyScrollView } from "apps/expo-shopping-list/src/components/BodyScrollView";
+import Button from "apps/expo-shopping-list/src/components/button";
+import TextInput from "apps/expo-shopping-list/src/components/text-input";
 import {
   appleBlue,
   backgroundColors,
   emojies,
-} from 'apps/expo-shopping-list/src/constants/colors';
-import { Link, Stack } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useListCreation } from '../_context/ListCreationContext';
+} from "apps/expo-shopping-list/src/constants/colors";
+import { Link, Stack } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
+import { useListCreation } from "../_context/ListCreationContext";
+import { useAddShoppingListCallback } from "apps/expo-shopping-list/src/store/ShoppingListsStore";
 
 const create = () => {
-  const [listName, setListName] = useState('');
-  const [listDescription, setListDescription] = useState('');
+  const [listName, setListName] = useState("");
+  const [listDescription, setListDescription] = useState("");
   const { selectedColor, selectedEmoji, setSelectedColor, setSelectedEmoji } =
     useListCreation();
+  const createList = useAddShoppingListCallback();
 
-  const handleCreateList = () => {};
+  const handleCreateList = () => {
+    if (!listName) return;
+
+    const listId = createList({
+      name: listName,
+      description: listDescription,
+      emoji: selectedEmoji,
+      color: selectedColor,
+    });
+  };
+
   const handleCreateTestLists = () => {};
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     setSelectedEmoji(emojies[Math.floor(Math.random() * emojies.length)]);
     setSelectedColor(
-      backgroundColors[Math.floor(Math.random() * backgroundColors.length)]
+      backgroundColors[Math.floor(Math.random() * backgroundColors.length)],
     );
 
     return () => {
-      setSelectedColor('');
-      setSelectedEmoji('');
+      setSelectedColor("");
+      setSelectedEmoji("");
     };
   }, [emojies, backgroundColors]);
 
   return (
     <>
       <Stack.Screen
-        options={{ headerTitle: 'New List', headerLargeTitle: false }}
+        options={{ headerTitle: "New List", headerLargeTitle: false }}
       />
       <BodyScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.inputContainer}>
@@ -53,7 +65,7 @@ const create = () => {
             onChangeText={setListName}
           />
           <Link
-            href={{ pathname: '/emoji-picker' }}
+            href={{ pathname: "/emoji-picker" }}
             style={[styles.emojiButton, { borderColor: selectedColor }]}
           >
             <View style={styles.emojiContainer}>
@@ -61,7 +73,7 @@ const create = () => {
             </View>
           </Link>
           <Link
-            href={{ pathname: '/color-picker' }}
+            href={{ pathname: "/color-picker" }}
             style={[styles.colorButton, { borderColor: selectedColor }]}
           >
             <View style={styles.colorContainer}>
@@ -110,19 +122,19 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   titleInput: {
-    fontWeight: '600',
+    fontWeight: "600",
     fontSize: 28,
     padding: 0,
   },
   titleInputContainer: {
     flexGrow: 1,
     flexShrink: 1,
-    maxWidth: 'auto',
+    maxWidth: "auto",
     marginBottom: 0,
   },
   emojiButton: {
@@ -133,15 +145,15 @@ const styles = StyleSheet.create({
   emojiContainer: {
     width: 28,
     height: 28,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   descriptionInput: {
     padding: 0,
   },
   createButtonText: {
     color: appleBlue,
-    fontWeight: 'normal',
+    fontWeight: "normal",
   },
   colorButton: {
     padding: 1,
@@ -151,8 +163,8 @@ const styles = StyleSheet.create({
   colorContainer: {
     width: 28,
     height: 28,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

@@ -39,7 +39,7 @@ const useStoreId = () => {
 export const useAddShoppingListCallback = () => {
   const store = useStore(useStoreId());
 
-  if (store === undefined) return null;
+  if (store === undefined) return () => {};
 
   return useCallback(
     ({
@@ -67,6 +67,8 @@ export const useAddShoppingListCallback = () => {
           updatedAt: new Date().toISOString(),
         }),
       });
+
+      return listId;
     },
     [store],
   );
