@@ -9,7 +9,7 @@ import {
 import { Link, Stack } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { useListCreation } from "../_context/ListCreationContext";
+import { useListCreation } from "../../../../context/ListCreationContext";
 import { useAddShoppingListCallback } from "apps/expo-shopping-list/src/store/ShoppingListsStore";
 
 const create = () => {

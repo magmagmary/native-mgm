@@ -3,7 +3,7 @@ import React from "react";
 import { screenOptions } from "../../constants/screenOptions";
 import Button from "../../components/button";
 import { useUser } from "@clerk/clerk-expo";
-import { ListCreationProvider } from "./list/_context/ListCreationContext";
+import { ListCreationProvider } from "../../context/ListCreationContext";
 import { Provider as TinyBaseProvider } from "tinybase/ui-react";
 import ShoppingListsStore from "../../store/ShoppingListsStore";
 

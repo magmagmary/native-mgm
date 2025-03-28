@@ -1,8 +1,8 @@
-import React from 'react';
-import { useRouter } from 'expo-router';
-import { FlatList, Pressable, Text } from 'react-native';
-import { useListCreation } from './list/_context/ListCreationContext';
-import { emojies } from '../../constants/colors';
+import React from "react";
+import { useRouter } from "expo-router";
+import { FlatList, Pressable, Text } from "react-native";
+import { useListCreation } from "../../context/ListCreationContext";
+import { emojies } from "../../constants/colors";
 
 export default function EmojiPickerScreen() {
   const router = useRouter();
@@ -23,8 +23,8 @@ export default function EmojiPickerScreen() {
           }}
           style={{
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Text style={{ fontSize: 40 }}>{item}</Text>

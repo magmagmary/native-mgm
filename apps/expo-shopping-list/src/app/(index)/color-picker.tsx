@@ -1,8 +1,8 @@
-import React from 'react';
-import { useRouter } from 'expo-router';
-import { FlatList, Pressable, View } from 'react-native';
-import { useListCreation } from './list/_context/ListCreationContext';
-import { backgroundColors } from '../../constants/colors';
+import React from "react";
+import { useRouter } from "expo-router";
+import { FlatList, Pressable, View } from "react-native";
+import { useListCreation } from "../../context/ListCreationContext";
+import { backgroundColors } from "../../constants/colors";
 
 export default function ColorPickerScreen() {
   const router = useRouter();
@@ -23,8 +23,8 @@ export default function ColorPickerScreen() {
           }}
           style={{
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <View
